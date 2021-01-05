@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"02_task_2_can_bus_iot_device\startup_stm32f103xb.o"
+"02_task_2_can_bus_iot_device\main.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_it.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_msp.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_gpio_ex.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_tim.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_tim_ex.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_rcc.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_rcc_ex.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_gpio.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_dma.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_cortex.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_pwr.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_flash.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_flash_ex.o"
+"02_task_2_can_bus_iot_device\stm32f1xx_hal_exti.o"
+"02_task_2_can_bus_iot_device\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "02_Task_2_Can_Bus_Iot_Device\02_Task_2_Can_Bus_Iot_Device.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "02_Task_2_Can_Bus_Iot_Device.map" -o 02_Task_2_Can_Bus_Iot_Device\02_Task_2_Can_Bus_Iot_Device.axf
