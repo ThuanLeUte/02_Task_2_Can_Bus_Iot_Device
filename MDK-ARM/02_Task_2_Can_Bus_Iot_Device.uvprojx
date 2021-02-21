@@ -10,6 +10,7 @@
       <TargetName>02_Task_2_Can_Bus_Iot_Device</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -406,6 +407,11 @@
               <FileName>stm32f1xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>as5048a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\as5048a.c</FilePath>
             </File>
           </Files>
         </Group>
