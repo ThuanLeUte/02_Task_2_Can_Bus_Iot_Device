@@ -1,6 +1,5 @@
-==============================
+
 Electronics design Task#2
-==============================
 
 Concept and Design of a CAN enabled right RPM BLDC motor drive unit with the components described below. 
 
