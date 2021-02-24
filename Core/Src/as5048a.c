@@ -22,6 +22,8 @@
 #define AS5048A_MAGNITUDE                    (0x3FFE)
 #define AS5048A_ANGLE                        (0x3FFF)
 
+#define AS5048A_MAX_VALUE                    (8191.0)
+
 /* Private enumerate/structure ---------------------------------------- */
 /* Private macros ----------------------------------------------------- */
 #define CHECK(expr, ret)            \
@@ -47,20 +49,68 @@ static as5048a_status_t m_as5048a_read(as5048a_t *me, uint16_t reg_addr, uint16_
 static uint8_t m_spi_cal_even_parity(uint16_t value);
 
 /* Function definitions ----------------------------------------------- */
+as5048a_status_t as5048a_get_rotation_in_degrees(as5048a_t *me, float *degrees)
+{
+  uint16_t rotation = 0;
+
+  AS_CHECK(as5048a_get_rotation(me, &rotation));
+
+  *degrees = 360.0 * (rotation + AS5048A_MAX_VALUE) / (AS5048A_MAX_VALUE * 2.0);
+
+  return AS5048A_OK;
+}
+
+as5048a_status_t as5048a_get_rotation(as5048a_t *me, uint16_t *rotation)
+{
+  uint16_t raw_rotation = 0;
+
+  AS_CHECK(as5048a_get_raw_rotation(me, &raw_rotation));
+
+  *rotation = (uint16_t) raw_rotation - (uint16_t) me->position;
+  if (*rotation > AS5048A_MAX_VALUE)
+  {
+    *rotation = -((0x3FFF) - *rotation);
+  }
+
+  return AS5048A_OK;
+}
+
 as5048a_status_t as5048a_get_raw_rotation(as5048a_t *me, uint16_t *rotation)
 {
   return m_as5048a_read(me, AS5048A_ANGLE, rotation);
 }
 
+void as5048a_set_zero_position(as5048a_t *me, uint16_t position)
+{
+  me->position = position % 0x3FFF;
+}
+
+void as5048a_get_zero_position(as5048a_t *me, uint16_t *position)
+{
+  *position = me->position;
+}
+
 /* Private function definitions---------------------------------------- */
-static as5048a_status_t m_as5048a_read(as5048a_t *me, uint16_t reg_addr, uint16_t *P_data)
+/**
+ * @brief         AS5024A read register
+ *
+ * @param[in]     me        Pointer to as5048a structure
+ * @param[in]     reg_addr  Register address
+ * @param[in]     p_date    Pointer to data
+ * 
+ * @attention     None
+ *
+ * @return        AS5048A_OK
+ * @return        AS5048A_ERR_SPI
+ */
+static as5048a_status_t m_as5048a_read(as5048a_t *me, uint16_t reg_addr, uint16_t *p_data)
 {
   uint8_t data[2];
+  uint16_t command = 0x4000; // PAR=0 R/W=R;
 
-  // if ((NULL == me) || (NULL == me->spi_read) || (NULL == me->spi_write))
-    // return AS5048A_ERR_PARAM;
+  if ((NULL == me) || (NULL == me->spi_read) || (NULL == me->spi_write))
+    return AS5048A_ERR_PARAM;
 
-  uint16_t command = 0;
   command = command | reg_addr;
 
   // Add a parity bit on the MSB
@@ -74,17 +124,27 @@ static as5048a_status_t m_as5048a_read(as5048a_t *me, uint16_t reg_addr, uint16_
 
   CHECK(0 == me->spi_read((uint8_t *)&data, 2, 0xFFFF), AS5048A_ERR_SPI);
 
+  // Check if error bit is set
   if (data[1] & 0x40)
   {
     return AS5048A_ERR_SPI;
   }
-  
+
   // Return the data stripping the parity and error bits
-  *P_data = (((data[1] & 0xFF) << 8) | (data[0] & 0xFF)) & ~0xC000;
+  *p_data = (((data[1] & 0xFF) << 8) | (data[0] & 0xFF)) & ~0xC000;
 
   return AS5048A_OK;
 }
 
+/**
+ * @brief         Spi calculate even parity
+ *
+ * @param[in]     value    Input value
+ * 
+ * @attention     None
+ *
+ * @return        Parity value
+ */
 static uint8_t m_spi_cal_even_parity(uint16_t value)
 {
   uint8_t cnt = 0;
