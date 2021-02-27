@@ -20,7 +20,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "can.h"
+#include "usart.h"
 #include "gpio.h"
+#include "bsp.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -87,8 +89,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CAN_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+	int x = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,6 +101,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    LOG("1234567: %d", x);
+    HAL_Delay(100);
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_8);
+		x++;
   }
   /* USER CODE END 3 */
 }

@@ -128,7 +128,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
  *
  * @return        None
  */
-void HAL_CAN_rx_mail_box0CompleteCallback(CAN_HandleTypeDef *hcan)
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
 {
 }
 
@@ -142,7 +142,7 @@ void HAL_CAN_rx_mail_box0CompleteCallback(CAN_HandleTypeDef *hcan)
  *
  * @return        None
  */
-void HAL_CAN_rx_mail_box1CompleteCallback(CAN_HandleTypeDef *hcan)
+void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
 {
 }
 
@@ -156,7 +156,7 @@ void HAL_CAN_rx_mail_box1CompleteCallback(CAN_HandleTypeDef *hcan)
  *
  * @return        None
  */
-void HAL_CAN_rx_mail_box2CompleteCallback(CAN_HandleTypeDef *hcan)
+void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
 {
 }
 
