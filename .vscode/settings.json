@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "sys_can.h": "c"
+        "sys_can.h": "c",
+        "can_driver.h": "c",
+        "bsp.h": "c"
     }
 }

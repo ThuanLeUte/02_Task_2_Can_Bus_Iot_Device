@@ -10,6 +10,7 @@
 "02_task_2_can_bus_iot_device\stm32f1xx_it.o"
 "02_task_2_can_bus_iot_device\stm32f1xx_hal_msp.o"
 "02_task_2_can_bus_iot_device\bsp.o"
+"02_task_2_can_bus_iot_device\sys_can.o"
 "02_task_2_can_bus_iot_device\stm32f1xx_hal_gpio_ex.o"
 "02_task_2_can_bus_iot_device\stm32f1xx_hal_can.o"
 "02_task_2_can_bus_iot_device\stm32f1xx_hal.o"

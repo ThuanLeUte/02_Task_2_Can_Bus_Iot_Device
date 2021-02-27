@@ -443,6 +443,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\bsp.c</FilePath>
             </File>
+            <File>
+              <FileName>sys_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sys_can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

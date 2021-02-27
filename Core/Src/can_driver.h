@@ -22,8 +22,8 @@
  */
 
 /* Define to prevent recursive inclusion ------------------------------ */
-#ifndef __CAN_BUS_H
-#define __CAN_BUS_H
+#ifndef __CAN_DRIVER_H
+#define __CAN_DRIVER_H
 
 /* Includes ----------------------------------------------------------- */
 #include <stdint.h>
@@ -102,6 +102,6 @@ void can_driver_begin(void);
  */
 void can_driver_msg_send(void);
 
-#endif // __CAN_BUS_H
+#endif // __CAN_DRIVER_H
 
 /* End of file -------------------------------------------------------- */

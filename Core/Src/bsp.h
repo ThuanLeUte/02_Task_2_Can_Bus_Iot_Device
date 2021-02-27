@@ -11,8 +11,8 @@
  */
 
 /* Define to prevent recursive inclusion ------------------------------ */
-#ifndef __SYS_CAN_H
-#define __SYS_CAN_H
+#ifndef __BSP_H
+#define __BSP_H
 
 /* Includes ----------------------------------------------------------- */
 /* Public defines ----------------------------------------------------- */
@@ -33,6 +33,6 @@
  */
 void bsp_log_data(const char *fmt, ...);
 
-#endif // __SYS_CAN_H
+#endif // __BSP_H
 
 /* End of file -------------------------------------------------------- */

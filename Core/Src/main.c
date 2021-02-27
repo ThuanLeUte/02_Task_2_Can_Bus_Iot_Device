@@ -26,6 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "sys.h"
 
 /* USER CODE END Includes */
 
@@ -90,8 +91,10 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN_Init();
   MX_USART1_UART_Init();
+
   /* USER CODE BEGIN 2 */
-	int x = 0;
+  sys_boot();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,13 +102,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
-
-    LOG("1234567: %d", x);
-    HAL_Delay(100);
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_8);
-		x++;
+    sys_run();
   }
   /* USER CODE END 3 */
 }

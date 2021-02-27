@@ -43,10 +43,10 @@ void can_driver_begin(void)
 void can_driver_msg_send(void)
 {
   // Wait until have atleat 1 mailbox free
-  while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0)
-  {
-    // Do nothing
-  }
+  // while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0)
+  // {
+  //   // Do nothing
+  // }
 
   if ((HAL_CAN_GetState(&hcan) == HAL_CAN_STATE_READY) || (HAL_CAN_GetState(&hcan) == HAL_CAN_STATE_LISTENING))
   {
@@ -130,6 +130,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
  */
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_8);
 }
 
 /**
@@ -144,6 +145,7 @@ void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
  */
 void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_8);
 }
 
 /**
@@ -158,6 +160,7 @@ void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
  */
 void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_8);
 }
 
 /**
