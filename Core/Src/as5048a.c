@@ -36,7 +36,7 @@
 #define AS_CHECK(expr)              \
   do {                              \
     as5048a_status_t ret = (expr);  \
-    if (AS5048_OK != ret) {         \
+    if (AS5048A_OK != ret) {        \
       return (ret);                 \
     }                               \
   } while (0)

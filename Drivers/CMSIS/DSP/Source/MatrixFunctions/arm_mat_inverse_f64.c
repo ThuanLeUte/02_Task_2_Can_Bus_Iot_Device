@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------
  * Project:      CMSIS DSP Library
- * Title:        arm_mat_inverse_f64.c
+ * Title:        arm_mat_inverse_f32.c
  * Description:  Floating-point matrix inverse
  *
  * $Date:        27. January 2017
@@ -70,24 +70,24 @@
  * <code>ARM_MATH_SINGULAR</code>.  Otherwise, the function returns <code>ARM_MATH_SUCCESS</code>.
  */
 
-arm_status arm_mat_inverse_f64(
-  const arm_matrix_instance_f64 * pSrc,
-  arm_matrix_instance_f64 * pDst)
+arm_status arm_mat_inverse_f32(
+  const arm_matrix_instance_f32 * pSrc,
+  arm_matrix_instance_f32 * pDst)
 {
-  float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
-  float64_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  float64_t *pInT1, *pInT2;                      /* Temporary input data matrix pointer */
-  float64_t *pOutT1, *pOutT2;                    /* Temporary output data matrix pointer */
-  float64_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data matrix pointer */
+  float32_t *pIn = pSrc->pData;                  /* input data matrix pointer */
+  float32_t *pOut = pDst->pData;                 /* output data matrix pointer */
+  float32_t *pInT1, *pInT2;                      /* Temporary input data matrix pointer */
+  float32_t *pOutT1, *pOutT2;                    /* Temporary output data matrix pointer */
+  float32_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data matrix pointer */
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
 
 #if defined (ARM_MATH_DSP)
-  float64_t maxC;                                /* maximum value in the column */
+  float32_t maxC;                                /* maximum value in the column */
 
   /* Run the below code for Cortex-M4 and Cortex-M3 */
 
-  float64_t Xchg, in = 0.0f, in1;                /* Temporary input values  */
+  float32_t Xchg, in = 0.0f, in1;                /* Temporary input values  */
   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k, l;      /* loop counters */
   arm_status status;                             /* status of matrix inverse */
 
@@ -416,7 +416,7 @@ arm_status arm_mat_inverse_f64(
 
   /* Run the below code for Cortex-M0 */
 
-  float64_t Xchg, in = 0.0f;                     /* Temporary input values  */
+  float32_t Xchg, in = 0.0f;                     /* Temporary input values  */
   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k, l;      /* loop counters */
   arm_status status;                             /* status of matrix inverse */
 
